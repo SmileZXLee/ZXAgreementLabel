@@ -7,7 +7,6 @@
 //  https://github.com/SmileZXLee/ZXAgreementLabel
 
 #import "ZXAgreementLabel.h"
-#import "YYText.h"
 
 @interface ZXAgreementLabel()
 @property (strong, nonatomic)NSMutableArray *zx_highlightRanges;

@@ -7,7 +7,7 @@
 //  https://github.com/SmileZXLee/ZXAgreementLabel
 
 #import <UIKit/UIKit.h>
-#import "YYLabel.h"
+#import "YYText.h"
 ///默认选择图标未选中时的颜色(灰色)
 #define ZXDefaultChooseIconColor [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1]
 ///默认高亮颜色(蓝色)
