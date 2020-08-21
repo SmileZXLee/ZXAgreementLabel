@@ -21,7 +21,7 @@ pod 'ZXAgreementLabel'
 ![](http://www.zxlee.cn/github/ZXAgreementLabel/ZXAgreementLabelDemo1.gif)
 
 ## 开始使用
-### 将Label/View继承于`ZXAgreementLabel`
+### 将View继承于`ZXAgreementLabel`，注意：`ZXAgreementLabel`的父类是UIView而非UILabel
 ### 设置ZXAgreementLabel(简约版)
 ```objective-c
 /// 设置AgreementLabel(简约版)
