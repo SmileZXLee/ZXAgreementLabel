@@ -28,6 +28,7 @@ pod 'ZXAgreementLabel'
 /// @param highlightColor 高亮的文字颜色和选择图标选中时的颜色
 /// @param allResponseToChooseIconTapAction 是否允许点击高亮部分以外的区域都触发选中事件，默认为否(当点击选择按钮时才触发)
 /// @param highlightTapAction 点击高亮部分文字回调
+```
 ```objective-c
 self.agreementLabel.text = @"我已同意《用户协议》和《隐私协议》并承诺遵守平台规范";
 //如果希望默认选中，请添加这一行
