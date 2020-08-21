@@ -272,7 +272,7 @@
 - (UIImage *)zx_defaultChooseImage{
     static UIImage *image = nil;
     if (!image) {
-        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[ZXAgreementLabel class]] pathForResource:NSStringFromClass([self class]) ofType:@"bundle"]];
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[ZXAgreementLabel class]] pathForResource:NSStringFromClass([ZXAgreementLabel class]) ofType:@"bundle"]];
         image = [[UIImage imageWithContentsOfFile:[bundle pathForResource:@"choose_icon" ofType:@"png"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return image;
