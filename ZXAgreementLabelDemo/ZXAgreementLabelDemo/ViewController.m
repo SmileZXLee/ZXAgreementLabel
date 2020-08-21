@@ -25,8 +25,6 @@
         [self.view makeToast:[NSString stringWithFormat:@"点击了👉%@",highlightStr] duration:0.5 position:CSToastPositionCenter];
         NSLog(@"点击了--%@",highlightStr);
     }];
-    
-    
 }
 
 #pragma mark 更改文字颜色为灰色
@@ -66,7 +64,7 @@
     }
 }
 
-#pragma mark 更改选择图标颜色为紫色
+#pragma mark 更改选择图标选中时的颜色为紫色
 - (IBAction)setChooseIconSelectedColor:(UISwitch *)sender {
     if(sender.on){
         self.agreementLabel.zx_chooseIconSelectedColor = [UIColor purpleColor];
@@ -75,7 +73,7 @@
     }
 }
 
-#pragma mark 自定义选择图标样式
+#pragma mark 自定义选择图标图片
 - (IBAction)setCustomChooseIconImage:(UISwitch *)sender {
     if(sender.on){
         self.agreementLabel.zx_customChooseIconImage = [UIImage imageNamed:@"heart_icon"];
@@ -86,7 +84,7 @@
     }
 }
 
-#pragma mark 点击高亮以外的区域都触发选中事件
+#pragma mark 设置点击高亮以外的区域都触发选中事件
 - (IBAction)setAllResponseToChooseIconTapAction:(UISwitch *)sender {
     if(sender.on){
         self.agreementLabel.zx_allResponseToChooseIconTapAction = YES;
