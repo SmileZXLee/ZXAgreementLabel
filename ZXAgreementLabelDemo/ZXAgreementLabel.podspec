@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = 'ZXAgreementLabel'
-s.version      = '1.0.2'
+s.version      = '1.0.1'
 s.summary      = '【基于YYText】，超简单！一行代码实现点击同意协议Label'
 s.homepage     = 'https://github.com/SmileZXLee/ZXAgreementLabel'
 s.license      = 'MIT'
