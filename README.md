@@ -117,9 +117,14 @@ self.agreementLabel.zx_allResponseToChooseIconTapAction = YES;
 self.agreementLabel.zx_highlightSubStrs = @[@"《用户协议》",@"《隐私协议》"];
 ```
 
+### 设置隐藏选择图标image
+```objective-c
+self.agreementLabel.zx_hideChooseImage = YES;
+```
+
 ### 设置或获取选中状态
 ```objective-c
-////如果希望默认选中，请在控制器加载时将`zx_selected`设置为YES
+//如果希望默认选中，请在控制器加载时将`zx_selected`设置为YES
 self.agreementLabel.zx_selected = YES;
 ```
 
