@@ -25,6 +25,10 @@
         [self.view makeToast:[NSString stringWithFormat:@"点击了👉%@",highlightStr] duration:0.5 position:CSToastPositionCenter];
         NSLog(@"点击了--%@",highlightStr);
     }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.agreementLabel.textAlignment = NSTextAlignmentCenter;
+    });
+    
 }
 
 #pragma mark 更改文字颜色为灰色
@@ -99,6 +103,13 @@
         self.agreementLabel.zx_highlightSubStrs = @[@"已同意",@"平台规范"];
     }else{
         self.agreementLabel.zx_highlightSubStrs = @[@"《用户协议》",@"《隐私协议》"];
+    }
+}
+- (IBAction)setHideChooseImage:(UISwitch *)sender {
+    if(sender.on){
+        self.agreementLabel.zx_hideChooseImage = YES;
+    }else{
+        self.agreementLabel.zx_hideChooseImage = NO;
     }
 }
 
