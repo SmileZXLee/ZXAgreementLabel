@@ -18,6 +18,7 @@
 @property (strong, nonatomic)UIColor *privateZXChooseIconSelectedColor;
 @property (strong, nonatomic)UIImage *privateZXCustomChooseIconImage;
 @property (strong, nonatomic)UIImage *privateZXCustomChooseIconSelectedImage;
+@property (assign, nonatomic)NSTextAlignment privateDefalutTextAlignment;
 @end
 @implementation ZXAgreementLabel
 
@@ -39,6 +40,7 @@
 
 - (void)setUp{
     self.zx_spaceToChooseIcon = ZXDefaultSpaceToChooseIcon;
+    self.privateDefalutTextAlignment = NSTextAlignmentLeft;
 }
 
 - (void)zx_setAgreementWithHighlightSubStrs:(NSArray *)highlightSubStrs highlightColor:(nullable UIColor *)highlightColor  allResponseToChooseIconTapAction:(BOOL)allResponseToChooseIconTapAction highlightTapAction:(nullable ZXHighlightTapAction)highlightTapAction{
@@ -97,7 +99,9 @@
     NSMutableAttributedString *attachment = [NSMutableAttributedString yy_attachmentStringWithContent:chooseImage contentMode:UIViewContentModeCenter attachmentSize:CGSizeMake(self.font.lineHeight, self.font.lineHeight) alignToFont:self.font alignment:(YYTextVerticalAlignment)YYTextVerticalAlignmentCenter];
     [attachment appendAttributedString:[[NSAttributedString alloc]initWithString:@" "]];
     [attachment addAttribute:NSKernAttributeName value:@(spaceToChooseIcon - [self getSpaceWidth]) range:NSMakeRange(0, attachment.length)];
-    [attributedString insertAttributedString:attachment atIndex:0];
+    if(!self.zx_hideChooseImage){
+        [attributedString insertAttributedString:attachment atIndex:0];
+    }
     [attributedString addAttribute:NSFontAttributeName value:self.font range:NSMakeRange(0, attributedString.length)];
     for(NSValue *highlightRangeValue in highlightRanges){
         NSRange highlightRange = [highlightRangeValue rangeValue];
@@ -106,12 +110,13 @@
         }];
     }
     
-    NSMutableArray *chooseIconResponseRanges;
-    
+    NSMutableArray *chooseIconResponseRanges = [NSMutableArray array];
     if(allResponseToChooseIconTapAction){
         chooseIconResponseRanges = [self excludeRanges:highlightRanges inStringLength:attributedString.length];
     }else{
-        chooseIconResponseRanges = [@[[NSValue valueWithRange:NSMakeRange(0, 2)]] mutableCopy];
+        if(!self.zx_hideChooseImage){
+            chooseIconResponseRanges = [@[[NSValue valueWithRange:NSMakeRange(0, 2)]] mutableCopy];
+        }
     }
     __weak typeof(self) weakSelf = self;
     for(NSValue *chooseIconRangeValue in chooseIconResponseRanges){
@@ -155,7 +160,7 @@
 
 - (void)setAttributedText:(NSAttributedString *)attributedText{
     [super setAttributedText:attributedText];
-    
+    self.textAlignment = self.privateDefalutTextAlignment;
 }
 
 - (void)setZx_highlightColor:(UIColor *)zx_highlightColor{
@@ -210,9 +215,20 @@
     [self updateAgreementLabel];
 }
 
+- (void)setZx_hideChooseImage:(BOOL)zx_hideChooseImage{
+    _zx_hideChooseImage = zx_hideChooseImage;
+    self.zx_highlightRanges = [self getHighlightRangesWithHighlightSubStrs:self.zx_highlightSubStrs];
+    [self updateAgreementLabel];
+}
+
 - (void)setZx_selected:(BOOL)zx_selected{
     _zx_selected = zx_selected;
     [self updateAgreementLabel];
+}
+
+- (void)setTextAlignment:(NSTextAlignment)textAlignment{
+    [super setTextAlignment:textAlignment];
+    self.privateDefalutTextAlignment = textAlignment;
 }
 
 - (UIColor *)zx_textColor{
@@ -380,7 +396,10 @@
 #pragma mark 根据高亮的文字数组获取其所在的ranges
 - (NSMutableArray *)getHighlightRangesWithHighlightSubStrs:(NSArray *)highlightSubStrs{
     highlightSubStrs = [self removeSameObjectInArray:[NSMutableArray arrayWithArray:highlightSubStrs]];
-    NSString *inString = [@"  " stringByAppendingString:self.orgText];
+    NSString *inString = self.orgText;
+    if(!self.zx_hideChooseImage){
+        inString = [@"  " stringByAppendingString:self.orgText];
+    }
     NSMutableArray *highlightRanges = [NSMutableArray array];
     for(NSString *subStr in highlightSubStrs){
         NSMutableArray *subHighlightRanges = [self rangesOfSubString:subStr inString:inString];

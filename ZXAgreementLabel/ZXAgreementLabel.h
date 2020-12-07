@@ -48,6 +48,8 @@ typedef void(^ZXChooseIconTapAction)(BOOL selected,NSRange range);
 @property (strong, nonatomic, readonly)UIImage *zx_defaultChooseImage;
 ///需要高亮的文字数组
 @property (strong, nonatomic)NSArray *zx_highlightSubStrs;
+///是否隐藏选择图标image
+@property (assign, nonatomic)BOOL zx_hideChooseImage;
 ///是否已选中，默认为NO，若需要默认选中，则在控制器加载时设置其为YES
 @property (assign, nonatomic)BOOL zx_selected;
 
