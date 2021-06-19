@@ -92,6 +92,9 @@
     self.zx_chooseIconTapAction = chooseIconTapAction;
     
     self.userInteractionEnabled = YES;
+    if(!self.orgText){
+        return;
+    }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.orgText];
     [attributedString addAttribute:NSForegroundColorAttributeName value:textColor range:NSMakeRange(0, self.orgText.length)];
     UIImage *chooseImage = self.zx_currentChooseImage;
